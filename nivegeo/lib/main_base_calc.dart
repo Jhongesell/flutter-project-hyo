@@ -15,6 +15,7 @@ class _HomeState extends State<Home> {
   TextEditingController hilosupController = TextEditingController(); // New
   TextEditingController hilomedController = TextEditingController(); // New
   TextEditingController hiloinfController = TextEditingController(); // New
+  TextEditingController observaController = TextEditingController(); // New
   String _infoText = "Informe sus mediciones!";
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -23,6 +24,7 @@ class _HomeState extends State<Home> {
     hilosupController.text = ""; // New
     hilomedController.text = ""; // New
     hiloinfController.text = ""; // New
+    observaController.text = "";
     setState(() {
       _infoText = "Informe sus mediciones!";
       _formKey = GlobalKey<FormState>();
@@ -53,7 +55,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("H&O INGENIEROS: Calculadora para Nivelación Geométrica"),
+          title: Text("Nivelación Geométrica"),
           centerTitle: true,
           backgroundColor: Colors.blue,
           actions: [
@@ -69,14 +71,14 @@ class _HomeState extends State<Home> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Icon(Icons.engineering_rounded,
-                      size: 120.0, color: Colors.lightBlue),
+                      size: 90.0, color: Colors.lightBlue),
                   TextFormField(
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                         labelText: "Hilo Superior (m)",
                         labelStyle: TextStyle(color: Colors.black)),
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.black, fontSize: 25.0),
+                    style: TextStyle(color: Colors.black, fontSize: 15.0),
                     controller: hilosupController,
                     validator: (value) {
                       if (value.isEmpty) return "Ingrese el valor medido!";
@@ -88,7 +90,7 @@ class _HomeState extends State<Home> {
                           labelText: "Hilo Medio (m)",
                           labelStyle: TextStyle(color: Colors.black)),
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.black, fontSize: 25.0),
+                      style: TextStyle(color: Colors.black, fontSize: 15.0),
                       controller: hilomedController,
                       validator: (value) {
                         if (value.isEmpty) return "Ingrese el valor medido!";
@@ -99,7 +101,7 @@ class _HomeState extends State<Home> {
                           labelText: "Hilo Inferior (m)",
                           labelStyle: TextStyle(color: Colors.black)),
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.black, fontSize: 25.0),
+                      style: TextStyle(color: Colors.black, fontSize: 15.0),
                       controller: hiloinfController,
                       validator: (value) {
                         if (value.isEmpty) return "Ingrese el valor medido!";
@@ -107,7 +109,7 @@ class _HomeState extends State<Home> {
                   Padding(
                       padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                       child: Container(
-                          height: 50.0,
+                          height: 20.0,
                           child: ElevatedButton(
                             onPressed: () {
                               if (_formKey.currentState.validate())
@@ -116,7 +118,7 @@ class _HomeState extends State<Home> {
                             child: Text(
                               "Calcular",
                               style: TextStyle(
-                                  color: Colors.white, fontSize: 25.0),
+                                  color: Colors.white, fontSize: 15.0),
                             ),
                             style: ButtonStyle(
                                 backgroundColor:
@@ -125,7 +127,18 @@ class _HomeState extends State<Home> {
                           ))),
                   Text(_infoText,
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.red, fontSize: 80.0))
+                      style: TextStyle(color: Colors.red, fontSize: 15.0)),
+                  TextFormField(
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                          labelText: "Observaciones",
+                          labelStyle: TextStyle(color: Colors.black)),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.black, fontSize: 15.0),
+                      controller: observaController,
+                      validator: (value) {
+                        if (value.isEmpty) return "Ingrese texto";
+                      })
                 ],
               ),
             )));
